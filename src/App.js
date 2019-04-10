@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import Alert from 'react-bootstrap/Alert'
+// import Alert from 'react-bootstrap/Alert'
 
-import Header from './header/Header'
 import Homepage from './homescreen/Homepage'
 import MainRoutes from './MainRoutes'
 
@@ -26,18 +25,10 @@ class App extends Component {
   }
 
   render () {
-    const { alerts, user } = this.state
+    // const { alerts, user } = this.state
 
     return (
       <React.Fragment>
-        <Header user={user} />
-        {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
-        ))}
         <main className="container">
           <MainRoutes alert={this.alert}/>
           <Homepage/>
