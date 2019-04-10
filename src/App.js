@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Alert from 'react-bootstrap/Alert'
 
 import Header from './header/Header'
+import Homepage from './homescreen/Homepage'
 import MainRoutes from './MainRoutes'
 
 import './App.scss'
@@ -39,6 +40,7 @@ class App extends Component {
         ))}
         <main className="container">
           <MainRoutes alert={this.alert}/>
+          <Homepage/>
         </main>
       </React.Fragment>
     )
