@@ -29,6 +29,7 @@ const unauthenticatedOptions = (
     <Link to="/sign-up">Sign Up</Link>
     <Link to="/sign-in">Sign In</Link>
     <Link to="/">Home</Link>
+    <Link to="/google-sign-in">Google Sign In</Link>
   </div>
 )
 
