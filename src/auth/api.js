@@ -15,6 +15,20 @@ export const signUp = credentials => {
   })
 }
 
+export const firebaseSignUp = credentials => {
+  return axios({
+    method: 'POST',
+    url: apiUrl + '/sign-up',
+    data: {
+      credentials: {
+        email: credentials.email,
+        password: credentials.password,
+        password_confirmation: credentials.password
+      }
+    }
+  })
+}
+
 export const signIn = credentials => {
   return axios({
     url: apiUrl + '/sign-in',
