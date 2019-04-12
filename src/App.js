@@ -7,10 +7,10 @@ import MainRoutes from './MainRoutes'
 import './App.scss'
 import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-
+import { firebaseSignUp, signIn } from './auth/api'
 firebase.initializeApp({
-  apiKey: 'AIzaSyAt__WIdC5qSYp-3-qu8vLq-wxYuEBrgwE',
-  authDomain: 'dishly-web-client.firebaseapp.com'
+  apiKey: 'AIzaSyDwiMcXTvnU_enQVDhYG9q1tglt4JjLauc',
+  authDomain: 'dishly-3e346.firebaseapp.com'
 })
 
 class App extends Component {
@@ -20,7 +20,8 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      isSignedIn: false
+      isSignedIn: false,
+      credentials: null
     }
   }
 
@@ -37,7 +38,22 @@ class App extends Component {
 
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ isSignedIn: !!user })
+      if (user) {
+        this.setState({ credentials: { 'email': user.email, 'password': user.uid } })
+        console.log(this.state)
+        signIn(this.state.credentials)
+          .then((user) => console.log(user))
+          .catch(() => {
+            firebaseSignUp(this.state.credentials)
+              .then(() => {
+                console.log('sucess sign up ')
+                signIn(this.state.credentials)
+                  .then((user) => console.log(user))
+              })
+              .catch(console.log)
+          })
+      }
+      this.setState({ isSignedIn: user })
     })
   }
 
